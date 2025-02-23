@@ -16,9 +16,7 @@ app.post('/process', async (req, res) => {
     const { text } = req.body;
 
     try {
-        // Await the processText function to get the actual result
         const processedText = await processText(text);
-        // res.json({ processedText });
         res.send(processedText);
     } catch (error) {
         console.error('Error processing text:', {
@@ -27,10 +25,8 @@ app.post('/process', async (req, res) => {
             code: error.code,
             path: error.path,
         });
-        // res.status(500).json({ error: 'Failed to process text' });
         res.status(500).send('Failed to process text');
-    }       
-
+    }
 });
 
 app.listen(port, () => {
